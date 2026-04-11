@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoMoney — UI Mocks</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwindcss.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af' },
+            mint: { 500: '#10b981' },
+            coral: { 500: '#f43f5e' },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    .screen { display: none; max-width: 430px; margin: 0 auto; min-height: 100vh; position: relative; }
+    .screen.active { display: flex; flex-direction: column; }
+    .nav-item.active { color: #2563eb; }
+    .nav-item.active svg { stroke: #2563eb; }
+    .progress-bar { transition: width 0.6s ease; }
+    .fade-in { animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .bottom-sheet { transition: transform 0.3s ease; }
+    .screen-nav { display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; padding: 12px; background: #1e293b; position: sticky; top: 0; z-index: 50; }
+    .screen-nav button { font-size: 11px; padding: 4px 10px; border-radius: 6px; background: #334155; color: #e2e8f0; border: none; cursor: pointer; }
+    .screen-nav button.active { background: #3b82f6; color: white; }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+  <!-- Screen Navigation (for reviewing mocks) -->
+  <div class="screen-nav" id="screenNav">
+    <button onclick="showScreen('login')" class="active">Login</button>
+    <button onclick="showScreen('onboarding')">Onboarding</button>
+    <button onclick="showScreen('dashboard')">Dashboard</button>
+    <button onclick="showScreen('expenses')">Expenses</button>
+    <button onclick="showScreen('quick-add')">Quick Add</button>
+    <button onclick="showScreen('settlements')">Settlements</button>
+    <button onclick="showScreen('budgets')">Budgets</button>
+    <button onclick="showScreen('income')">Income</button>
+    <button onclick="showScreen('savings')">Savings</button>
+    <button onclick="showScreen('investments')">Investments</button>
+    <button onclick="showScreen('reports')">Reports</button>
+    <button onclick="showScreen('settings')">Settings</button>
+    <button onclick="showScreen('import')">Import</button>
+  </div>
+
+  <!-- ==================== LOGIN ==================== -->
+  <div id="login" class="screen active bg-white">
+    <div class="flex-1 flex flex-col items-center justify-center px-8">
+      <!-- Logo -->
+      <div class="mb-8 text-center">
+        <div class="w-20 h-20 bg-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+          <span class="text-4xl">💰</span>
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900">MoMoney</h1>
+        <p class="text-gray-500 mt-1">Shared finances, simplified</p>
+      </div>
+
+      <!-- Google Sign In -->
+      <button class="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-200 rounded-xl py-3.5 px-4 font-medium text-gray-700 hover:bg-gray-50 mb-4">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Continue with Google
+      </button>
+
+      <!-- Divider -->
+      <div class="flex items-center w-full my-4">
+        <div class="flex-1 h-px bg-gray-200"></div>
+        <span class="px-4 text-sm text-gray-400">or</span>
+        <div class="flex-1 h-px bg-gray-200"></div>
+      </div>
+
+      <!-- Email Form -->
+      <div class="w-full space-y-3">
+        <input type="email" placeholder="Email address" class="w-full border border-gray-200 rounded-xl py-3 px-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent">
+        <input type="password" placeholder="Password" class="w-full border border-gray-200 rounded-xl py-3 px-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent">
+        <button class="w-full bg-brand-600 text-white rounded-xl py-3.5 font-semibold hover:bg-brand-700">Sign In</button>
+      </div>
+
+      <p class="mt-4 text-sm text-gray-500">
+        Don't have an account? <a href="#" class="text-brand-600 font-medium">Sign up</a>
+      </p>
+      <a href="#" class="mt-2 text-sm text-gray-400">Forgot password?</a>
+    </div>
+  </div>
+
+  <!-- ==================== ONBOARDING ==================== -->
+  <div id="onboarding" class="screen bg-white">
+    <div class="flex-1 flex flex-col items-center justify-center px-8">
+      <div class="w-16 h-16 bg-brand-100 rounded-2xl flex items-center justify-center mb-6">
+        <span class="text-3xl">🏠</span>
+      </div>
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Welcome to MoMoney!</h2>
+      <p class="text-gray-500 text-center mb-8">Set up your household to start tracking expenses together.</p>
+
+      <div class="w-full space-y-3">
+        <button class="w-full bg-brand-600 text-white rounded-xl py-4 font-semibold hover:bg-brand-700 flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>
+          Create a Household
+        </button>
+        <button class="w-full bg-white border-2 border-gray-200 text-gray-700 rounded-xl py-4 font-semibold hover:bg-gray-50 flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M13 12H3"/></svg>
+          Join with Invite Code
+        </button>
+      </div>
+
+      <!-- Expanded: Create Household Form -->
+      <div class="w-full mt-8 p-5 bg-gray-50 rounded-2xl border border-gray-100">
+        <h3 class="font-semibold text-gray-900 mb-4">Create Your Household</h3>
+        <div class="space-y-3">
+          <div>
+            <label class="text-sm font-medium text-gray-600 mb-1 block">Household Name</label>
+            <input type="text" value="Agustin & Jule" class="w-full border border-gray-200 rounded-xl py-3 px-4 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-500">
+          </div>
+          <div>
+            <label class="text-sm font-medium text-gray-600 mb-1 block">Invite Partner (optional)</label>
+            <input type="email" placeholder="partner@email.com" class="w-full border border-gray-200 rounded-xl py-3 px-4 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500">
+          </div>
+          <button class="w-full bg-brand-600 text-white rounded-xl py-3.5 font-semibold mt-2">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== DASHBOARD ==================== -->
+  <div id="dashboard" class="screen bg-gray-50">
+    <!-- Header -->
+    <div class="bg-brand-600 text-white px-5 pt-5 pb-16 rounded-b-3xl">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <p class="text-brand-200 text-sm">Good morning,</p>
+          <h1 class="text-xl font-bold">Agustin</h1>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="text-xs bg-brand-700 rounded-lg px-2.5 py-1.5 flex items-center gap-1">
+            🏠 A & J's Home
+          </div>
+          <div class="w-9 h-9 bg-brand-500 rounded-full flex items-center justify-center text-sm font-bold">A</div>
+        </div>
+      </div>
+      <!-- Summary Cards Row -->
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-white/15 backdrop-blur rounded-xl p-3">
+          <p class="text-brand-200 text-xs">Monthly Expenses</p>
+          <p class="text-xl font-bold">$3,247</p>
+          <p class="text-xs text-red-300 mt-0.5">+8% vs last month</p>
+        </div>
+        <div class="bg-white/15 backdrop-blur rounded-xl p-3">
+          <p class="text-brand-200 text-xs">Settlement</p>
+          <p class="text-xl font-bold text-amber-300">$142.50</p>
+          <p class="text-xs text-brand-200 mt-0.5">Jule owes you</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content (overlapping header) -->
+    <div class="px-5 -mt-6 pb-24 space-y-4 fade-in">
+      <!-- Quick Budget Health -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-semibold text-gray-900">Budget Health</h3>
+          <span class="text-xs text-gray-400">April 2026</span>
+        </div>
+        <div class="space-y-3">
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-gray-600">🛒 Groceries</span>
+              <span class="text-gray-900 font-medium">$320 / $500</span>
+            </div>
+            <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+              <div class="h-full bg-green-500 rounded-full progress-bar" style="width: 64%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-gray-600">🍽️ Restaurants</span>
+              <span class="text-gray-900 font-medium">$410 / $500</span>
+            </div>
+            <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+              <div class="h-full bg-amber-500 rounded-full progress-bar" style="width: 82%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-gray-600">🛍️ Shopping</span>
+              <span class="text-gray-900 font-medium">$280 / $250</span>
+            </div>
+            <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+              <div class="h-full bg-red-500 rounded-full progress-bar" style="width: 100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spending by Category (Donut placeholder) -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <h3 class="font-semibold text-gray-900 mb-3">Spending Breakdown</h3>
+        <div class="flex items-center gap-4">
+          <!-- Simple donut mock -->
+          <div class="relative w-28 h-28 flex-shrink-0">
+            <svg viewBox="0 0 36 36" class="w-full h-full">
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#e5e7eb" stroke-width="3"/>
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="25 75" stroke-dashoffset="0"/>
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#f97316" stroke-width="3" stroke-dasharray="20 80" stroke-dashoffset="-25"/>
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="15 85" stroke-dashoffset="-45"/>
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#a855f7" stroke-width="3" stroke-dasharray="12 88" stroke-dashoffset="-60"/>
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#78716c" stroke-width="3" stroke-dasharray="28 72" stroke-dashoffset="-72"/>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="text-center">
+                <p class="text-lg font-bold text-gray-900">$3.2k</p>
+                <p class="text-[10px] text-gray-400">total</p>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-1.5 text-sm">
+            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-green-500"></span><span class="text-gray-600">Groceries</span><span class="ml-auto font-medium">$520</span></div>
+            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span><span class="text-gray-600">Restaurants</span><span class="ml-auto font-medium">$410</span></div>
+            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span><span class="text-gray-600">Transport</span><span class="ml-auto font-medium">$290</span></div>
+            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span><span class="text-gray-600">Shopping</span><span class="ml-auto font-medium">$280</span></div>
+            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-stone-500"></span><span class="text-gray-600">Other</span><span class="ml-auto font-medium">$747</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Expenses -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-semibold text-gray-900">Recent Expenses</h3>
+          <a href="#" class="text-brand-600 text-sm font-medium">See all</a>
+        </div>
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center text-lg">🛒</div>
+            <div class="flex-1 min-w-0">
+              <p class="font-medium text-gray-900 text-sm truncate">Trader Joe's</p>
+              <p class="text-xs text-gray-400">Today &middot; Shared &middot; Agustin paid</p>
+            </div>
+            <p class="font-semibold text-gray-900">$67.43</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center text-lg">🍽️</div>
+            <div class="flex-1 min-w-0">
+              <p class="font-medium text-gray-900 text-sm truncate">Sushi Roku</p>
+              <p class="text-xs text-gray-400">Yesterday &middot; Shared &middot; Jule paid</p>
+            </div>
+            <p class="font-semibold text-gray-900">$89.00</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-lg">🚗</div>
+            <div class="flex-1 min-w-0">
+              <p class="font-medium text-gray-900 text-sm truncate">Uber ride</p>
+              <p class="text-xs text-gray-400">Yesterday &middot; Agustin &middot; Agustin paid</p>
+            </div>
+            <p class="font-semibold text-gray-900">$14.20</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center text-lg">⚡</div>
+            <div class="flex-1 min-w-0">
+              <p class="font-medium text-gray-900 text-sm truncate">ConEd Electric</p>
+              <p class="text-xs text-gray-400">Apr 1 &middot; Shared &middot; Auto</p>
+            </div>
+            <p class="font-semibold text-gray-900">$124.56</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Savings Goals -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-semibold text-gray-900">Savings Goals</h3>
+          <a href="#" class="text-brand-600 text-sm font-medium">View all</a>
+        </div>
+        <div class="space-y-3">
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-gray-700">🏖️ Vacation Fund</span>
+              <span class="text-gray-500">$2,400 / $5,000</span>
+            </div>
+            <div class="h-2.5 bg-gray-100 rounded-full overflow-hidden">
+              <div class="h-full bg-brand-500 rounded-full progress-bar" style="width: 48%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-gray-700">🚨 Emergency Fund</span>
+              <span class="text-gray-500">$8,200 / $15,000</span>
+            </div>
+            <div class="h-2.5 bg-gray-100 rounded-full overflow-hidden">
+              <div class="h-full bg-mint-500 rounded-full progress-bar" style="width: 55%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAB -->
+    <div class="fixed bottom-20 right-1/2 translate-x-[195px] z-40">
+      <button onclick="showScreen('quick-add')" class="w-14 h-14 bg-brand-600 rounded-full shadow-lg shadow-brand-600/30 flex items-center justify-center text-white text-2xl hover:bg-brand-700 active:scale-95 transition-transform">
+        +
+      </button>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white border-t border-gray-100 px-2 py-2 flex justify-around z-30">
+      <button class="nav-item active flex flex-col items-center gap-0.5 px-3 py-1">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1"/></svg>
+        <span class="text-[10px] font-medium">Home</span>
+      </button>
+      <button class="nav-item flex flex-col items-center gap-0.5 px-3 py-1 text-gray-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        <span class="text-[10px] font-medium">Expenses</span>
+      </button>
+      <button class="nav-item flex flex-col items-center gap-0.5 px-3 py-1 text-gray-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/></svg>
+        <span class="text-[10px] font-medium">Settle</span>
+      </button>
+      <button class="nav-item flex flex-col items-center gap-0.5 px-3 py-1 text-gray-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        <span class="text-[10px] font-medium">Reports</span>
+      </button>
+      <button class="nav-item flex flex-col items-center gap-0.5 px-3 py-1 text-gray-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span class="text-[10px] font-medium">More</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== QUICK ADD (Bottom Sheet) ==================== -->
+  <div id="quick-add" class="screen bg-gray-900/50">
+    <div class="flex-1" onclick="showScreen('dashboard')"></div>
+    <div class="bg-white rounded-t-3xl p-5 pb-8 bottom-sheet">
+      <div class="w-10 h-1 bg-gray-300 rounded-full mx-auto mb-5"></div>
+      <h2 class="text-lg font-bold text-gray-900 mb-4">Add Expense</h2>
+
+      <!-- Amount -->
+      <div class="mb-4">
+        <div class="flex items-center gap-2 bg-gray-50 rounded-2xl p-4">
+          <span class="text-2xl text-gray-400">$</span>
+          <input type="text" value="42.50" class="text-3xl font-bold text-gray-900 bg-transparent w-full outline-none" placeholder="0.00" autofocus>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-4">
+        <input type="text" value="Trader Joe's groceries" placeholder="What was this for?" class="w-full bg-gray-50 rounded-xl py-3 px-4 text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-brand-500">
+      </div>
+
+      <!-- Category (AI-suggested) -->
+      <div class="mb-4">
+        <label class="text-xs font-medium text-gray-500 mb-2 block">CATEGORY</label>
+        <div class="flex gap-2 flex-wrap">
+          <button class="bg-green-100 text-green-700 px-3 py-1.5 rounded-lg text-sm font-medium flex items-center gap-1 ring-2 ring-green-500">
+            🛒 Groceries
+            <span class="text-[10px] bg-green-200 text-green-800 px-1.5 py-0.5 rounded ml-1">AI</span>
+          </button>
+          <button class="bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg text-sm font-medium">🍽️ Restaurants</button>
+          <button class="bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg text-sm font-medium">🛍️ Shopping</button>
+          <button class="bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg text-sm font-medium">📦 Other</button>
+        </div>
+      </div>
+
+      <!-- Who is this for -->
+      <div class="mb-4">
+        <label class="text-xs font-medium text-gray-500 mb-2 block">WHO IS THIS FOR?</label>
+        <div class="flex gap-2">
+          <button class="flex-1 bg-brand-100 text-brand-700 rounded-xl py-2.5 text-sm font-semibold ring-2 ring-brand-500">Shared</button>
+          <button class="flex-1 bg-gray-100 text-gray-600 rounded-xl py-2.5 text-sm font-medium">Agustin</button>
+          <button class="flex-1 bg-gray-100 text-gray-600 rounded-xl py-2.5 text-sm font-medium">Jule</button>
+        </div>
+      </div>
+
+      <!-- Date -->
+      <div class="mb-6">
+        <label class="text-xs font-medium text-gray-500 mb-2 block">DATE</label>
+        <div class="flex gap-2">
+          <button class="bg-brand-100 text-brand-700 px-4 py-2 rounded-xl text-sm font-semibold ring-2 ring-brand-500">Today</button>
+          <button class="bg-gray-100 text-gray-600 px-4 py-2 rounded-xl text-sm font-medium">Yesterday</button>
+          <button class="bg-gray-100 text-gray-600 px-4 py-2 rounded-xl text-sm font-medium flex items-center gap-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Pick
+          </button>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <button class="w-full bg-brand-600 text-white rounded-xl py-3.5 font-semibold text-lg hover:bg-brand-700">
+        Add Expense
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== EXPENSES ==================== -->
+  <div id="expenses" class="screen bg-gray-50">
+    <!-- Header -->
+    <div class="bg-white px-5 pt-5 pb-3 border-b border-gray-100">
+      <h1 class="text-xl font-bold text-gray-900 mb-3">Expenses</h1>
+      <!-- Filters -->
+      <div class="flex gap-2 overflow-x-auto pb-1">
+        <button class="bg-brand-100 text-brand-700 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap">All</button>
+        <button class="bg-gray-100 text-gray-500 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap">Shared</button>
+        <button class="bg-gray-100 text-gray-500 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap">Agustin</button>
+        <button class="bg-gray-100 text-gray-500 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap">Jule</button>
+        <button class="bg-gray-100 text-gray-500 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap">Unsettled</button>
+        <button class="bg-gray-100 text-gray-500 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap flex items-center gap-1">
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
+          Filters
+        </button>
+      </div>
+    </div>
+
+    <!-- Expense List -->
+    <div class="px-5 pb-24 pt-3 space-y-1">
+      <!-- Date Group -->
+      <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mt-2 mb-2">Today, April 3</p>
+
+      <div class="bg-white rounded-xl p-3 flex items-center gap-3">
+        <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">🛒</div>
+        <div class="flex-1 min-w-0">
+          <p class="font-medium text-sm text-gray-900 truncate">Trader Joe's</p>
+          <p class="text-xs text-gray-400">Shared &middot; Agustin paid</p>
+        </div>
+        <div class="text-right">
+          <p class="font-semibold text-sm">$67.43</p>
+          <div class="w-2 h-2 bg-amber-400 rounded-full ml-auto mt-1" title="Unsettled"></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-3 flex items-center gap-3">
+        <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">📺</div>
+        <div class="flex-1 min-w-0">
+          <p class="font-medium text-sm text-gray-900 truncate">Netflix</p>
+          <p class="text-xs text-gray-400">Shared &middot; Recurring &middot; Auto</p>
+        </div>
+        <div class="text-right">
+          <p class="font-semibold text-sm">$22.99</p>
+          <div class="w-2 h-2 bg-amber-400 rounded-full ml-auto mt-1"></div>
+        </div>
+      </div>
+
+      <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mt-4 mb-2">Yesterday, April 2</p>
+
+      <div class="bg-white rounded-xl p-3 flex items-center gap-3">
+        <div class="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center">🍽️</div>
+        <div class="flex-1 min-w-0">
+          <p class="font-medium text-sm text-gray-900 truncate">Sushi Roku</p>
+          <p class="text-xs text-gray-400">Shared &middot; Jule paid</p>
+        </div>
+        <div class="text-right">
+          <p class="font-semibold text-sm">$89.00</p>
+          <div class="w-2 h-2 bg-amber-400 rounded-full ml-auto mt-1"></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-3 flex items-center gap-3">
+        <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">🚗</div>
+        <div class="flex-1 min-w-0">
+          <p class="font-medium text-sm text-gray-900 truncate">Uber ride</p>
+          <p class="text-xs text-gray-400">Agustin only</p>
+        </div>
+        <div class="text-right">
+          <p class="font-semibold text-sm text-gray-500">$14.20</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-3 flex items-center gap-3">
+        <div class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">🛵</div>
+        <div class="flex-1 min-w-0">
+          <p class="font-medium text-sm text-gray-900 truncate">DoorDash - Chipotle</p>
+          <p class="text-xs text-gray-400">Shared &middot; Agustin paid</p>
+        </div>
+        <div class="text-right">
+          <p class="font-semibold text-sm">$28.45</p>
+          <div class="w-2 h-2 bg-amber-400 rounded-full ml-auto mt-1"></div>
+        </div>
+      </div>
+
+      <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mt-4 mb-2">April 1</p>
+
+      <div class="bg-white rounded-xl p-3 flex items-center gap-3">
+        <div class="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center">🏠</div>
+        <div class="flex-1 min-w-0">
+          <p class="font-medium text-sm text-gray-900 truncate">Rent - April</p>
+          <p class="text-xs text-gray-400">Shared &middot; Recurring &middot; Auto</p>
+        </div>
+        <div class="text-right">
+          <p class="font-semibold text-sm">$2,200</p>
+          <div class="w-2 h-2 bg-amber-400 rounded-full ml-auto mt-1"></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-3 flex items-center gap-3">
+        <div class="w-10 h-10 bg-yellow-100 rounded-xl flex items-center justify-center">⚡</div>
+        <div class="flex-1 min-w-0">
+          <p class="font-medium text-sm text-gray-900 truncate">ConEd Electric</p>
+          <p class="text-xs text-gray-400">Shared &middot; Agustin paid</p>
+        </div>
+        <div class="text-right">
+          <p class="font-semibold text-sm">$124.56</p>
+          <div class="w-2 h-2 bg-amber-400 rounded-full ml-auto mt-1"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAB -->
+    <div class="fixed bottom-20 right-1/2 translate-x-[195px] z-40">
+      <button onclick="showScreen('quick-add')" class="w-14 h-14 bg-brand-600 rounded-full shadow-lg shadow-brand-600/30 flex items-center justify-center text-white text-2xl">+</button>
+    </div>
+
+    <!-- Bottom Nav (same as dashboard) -->
+    <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white border-t border-gray-100 px-2 py-2 flex justify-around z-30">
+      <button class="nav-item flex flex-col items-center gap-0.5 px-3 py-1 text-gray-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1"/></svg>
+        <span class="text-[10px] font-medium">Home</span>
+      </button>
+      <button class="nav-item active flex flex-col items-center gap-0.5 px-3 py-1">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        <span class="text-[10px] font-medium">Expenses</span>
+      </button>
+      <button class="nav-item flex flex-col items-center gap-0.5 px-3 py-1 text-gray-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/></svg>
+        <span class="text-[10px] font-medium">Settle</span>
+      </button>
+      <button class="nav-item flex flex-col items-center gap-0.5 px-3 py-1 text-gray-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        <span class="text-[10px] font-medium">Reports</span>
+      </button>
+      <button class="nav-item flex flex-col items-center gap-0.5 px-3 py-1 text-gray-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span class="text-[10px] font-medium">More</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== SETTLEMENTS ==================== -->
+  <div id="settlements" class="screen bg-gray-50">
+    <div class="bg-white px-5 pt-5 pb-4 border-b border-gray-100">
+      <h1 class="text-xl font-bold text-gray-900">Settlements</h1>
+    </div>
+
+    <div class="px-5 pb-24 pt-4 space-y-4 fade-in">
+      <!-- Balance Card -->
+      <div class="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-5 text-center">
+        <p class="text-sm text-amber-700 mb-1">Current Balance</p>
+        <p class="text-3xl font-bold text-amber-900">$142.50</p>
+        <p class="text-sm text-amber-600 mt-1">Jule owes Agustin</p>
+        <div class="flex items-center justify-center gap-3 mt-4">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center text-white text-xs font-bold">A</div>
+            <div class="text-left">
+              <p class="text-xs font-medium text-gray-700">Agustin</p>
+              <p class="text-xs text-gray-500">66.7%</p>
+            </div>
+          </div>
+          <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center text-white text-xs font-bold">J</div>
+            <div class="text-left">
+              <p class="text-xs font-medium text-gray-700">Jule</p>
+              <p class="text-xs text-gray-500">33.3%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settle Up Button -->
+      <button class="w-full bg-brand-600 text-white rounded-xl py-3.5 font-semibold flex items-center justify-center gap-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        Settle Up — $142.50
+      </button>
+
+      <!-- Unsettled Breakdown -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <h3 class="font-semibold text-gray-900 mb-3">Unsettled Expenses (23)</h3>
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between py-2 border-b border-gray-50">
+            <span class="text-gray-600">Agustin paid for shared</span>
+            <span class="font-medium text-gray-900">$1,847.30</span>
+          </div>
+          <div class="flex justify-between py-2 border-b border-gray-50">
+            <span class="text-gray-600">Jule paid for shared</span>
+            <span class="font-medium text-gray-900">$1,562.30</span>
+          </div>
+          <div class="flex justify-between py-2">
+            <span class="text-gray-700 font-medium">Jule's share owed to Agustin</span>
+            <span class="font-bold text-amber-600">$142.50</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settlement History -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <h3 class="font-semibold text-gray-900 mb-3">History</h3>
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center text-green-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div class="flex-1">
+              <p class="font-medium text-sm">Settled up</p>
+              <p class="text-xs text-gray-400">Mar 31 &middot; 45 expenses</p>
+            </div>
+            <p class="font-semibold text-sm text-green-600">$287.15</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center text-green-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div class="flex-1">
+              <p class="font-medium text-sm">Settled up</p>
+              <p class="text-xs text-gray-400">Feb 28 &middot; 38 expenses</p>
+            </div>
+            <p class="font-semibold text-sm text-green-600">$193.42</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== BUDGETS ==================== -->
+  <div id="budgets" class="screen bg-gray-50">
+    <div class="bg-white px-5 pt-5 pb-4 border-b border-gray-100">
+      <div class="flex items-center justify-between">
+        <h1 class="text-xl font-bold text-gray-900">Budgets</h1>
+        <div class="flex items-center gap-2">
+          <button class="text-gray-400"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg></button>
+          <span class="text-sm font-medium text-gray-700">April 2026</span>
+          <button class="text-gray-400"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+      <!-- Total budget summary -->
+      <div class="mt-3 flex items-center gap-3">
+        <div class="flex-1">
+          <div class="h-3 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full bg-brand-500 rounded-full progress-bar" style="width: 55%"></div>
+          </div>
+        </div>
+        <span class="text-sm font-medium text-gray-700">$3,247 / $5,900</span>
+      </div>
+    </div>
+
+    <div class="px-5 pb-24 pt-4 fade-in">
+      <!-- Alert Banner -->
+      <div class="bg-red-50 border border-red-200 rounded-xl p-3 mb-4 flex items-start gap-2">
+        <span class="text-red-500 text-sm mt-0.5">⚠️</span>
+        <p class="text-xs text-red-700">Shopping is over budget by $30. You've spent 80% of Restaurants with 28 days left.</p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <!-- Budget Card: Rent (Fixed) -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🏠</span>
+            <span class="text-sm font-medium text-gray-900">Rent</span>
+          </div>
+          <p class="text-lg font-bold text-gray-900">$2,200</p>
+          <p class="text-xs text-gray-400 mb-2">of $2,200</p>
+          <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full bg-green-500 rounded-full" style="width: 100%"></div>
+          </div>
+          <p class="text-[10px] text-green-600 mt-1 font-medium">On track (fixed)</p>
+        </div>
+
+        <!-- Budget Card: Groceries -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🛒</span>
+            <span class="text-sm font-medium text-gray-900">Groceries</span>
+          </div>
+          <p class="text-lg font-bold text-gray-900">$320</p>
+          <p class="text-xs text-gray-400 mb-2">of $500</p>
+          <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full bg-green-500 rounded-full" style="width: 64%"></div>
+          </div>
+          <p class="text-[10px] text-green-600 mt-1 font-medium">64% — On track</p>
+        </div>
+
+        <!-- Budget Card: Restaurants -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🍽️</span>
+            <span class="text-sm font-medium text-gray-900">Restaurants</span>
+          </div>
+          <p class="text-lg font-bold text-gray-900">$410</p>
+          <p class="text-xs text-gray-400 mb-2">of $500</p>
+          <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full bg-amber-500 rounded-full" style="width: 82%"></div>
+          </div>
+          <p class="text-[10px] text-amber-600 mt-1 font-medium">82% — Caution</p>
+        </div>
+
+        <!-- Budget Card: Shopping (Over) -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm ring-2 ring-red-200">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🛍️</span>
+            <span class="text-sm font-medium text-gray-900">Shopping</span>
+          </div>
+          <p class="text-lg font-bold text-red-600">$280</p>
+          <p class="text-xs text-gray-400 mb-2">of $250</p>
+          <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full bg-red-500 rounded-full" style="width: 100%"></div>
+          </div>
+          <p class="text-[10px] text-red-600 mt-1 font-medium">112% — Over budget!</p>
+        </div>
+
+        <!-- Budget Card: Transport -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🚗</span>
+            <span class="text-sm font-medium text-gray-900">Transport</span>
+          </div>
+          <p class="text-lg font-bold text-gray-900">$14</p>
+          <p class="text-xs text-gray-400 mb-2">of $200</p>
+          <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full bg-green-500 rounded-full" style="width: 7%"></div>
+          </div>
+          <p class="text-[10px] text-green-600 mt-1 font-medium">7% — Under budget</p>
+        </div>
+
+        <!-- Budget Card: Entertainment -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">🎬</span>
+            <span class="text-sm font-medium text-gray-900">Fun</span>
+          </div>
+          <p class="text-lg font-bold text-gray-900">$23</p>
+          <p class="text-xs text-gray-400 mb-2">of $250</p>
+          <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full bg-green-500 rounded-full" style="width: 9%"></div>
+          </div>
+          <p class="text-[10px] text-green-600 mt-1 font-medium">9% — Under budget</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== INCOME ==================== -->
+  <div id="income" class="screen bg-gray-50">
+    <div class="bg-white px-5 pt-5 pb-4 border-b border-gray-100">
+      <h1 class="text-xl font-bold text-gray-900">Income & Split Ratio</h1>
+    </div>
+
+    <div class="px-5 pb-24 pt-4 space-y-4 fade-in">
+      <!-- Split Ratio Card -->
+      <div class="bg-gradient-to-br from-brand-50 to-indigo-50 border border-brand-200 rounded-2xl p-5">
+        <h3 class="text-sm font-medium text-brand-700 mb-3">Current Split Ratio</h3>
+        <div class="flex items-center gap-4">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <div class="w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center text-white text-[10px] font-bold">A</div>
+              <span class="text-sm font-medium">Agustin</span>
+            </div>
+            <div class="h-4 bg-white rounded-full overflow-hidden">
+              <div class="h-full bg-brand-500 rounded-full flex items-center justify-end pr-2" style="width: 66.7%">
+                <span class="text-[10px] text-white font-bold">66.7%</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <div class="w-6 h-6 bg-pink-500 rounded-full flex items-center justify-center text-white text-[10px] font-bold">J</div>
+              <span class="text-sm font-medium">Jule</span>
+            </div>
+            <div class="h-4 bg-white rounded-full overflow-hidden">
+              <div class="h-full bg-pink-500 rounded-full flex items-center justify-end pr-2" style="width: 33.3%">
+                <span class="text-[10px] text-white font-bold">33.3%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-brand-600 mt-3">Based on combined monthly income of $10,500</p>
+      </div>
+
+      <!-- Agustin's Income -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center text-white text-xs font-bold">A</div>
+            <h3 class="font-semibold text-gray-900">Agustin</h3>
+          </div>
+          <p class="font-bold text-brand-600">$7,000/mo</p>
+        </div>
+        <div class="space-y-2">
+          <div class="flex justify-between items-center py-2 border-b border-gray-50">
+            <div>
+              <p class="text-sm font-medium text-gray-900">Software Engineer Salary</p>
+              <p class="text-xs text-gray-400">Monthly &middot; Since Jan 2026</p>
+            </div>
+            <p class="font-medium text-sm">$7,000</p>
+          </div>
+        </div>
+        <button class="mt-3 text-sm text-brand-600 font-medium flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>
+          Add income source
+        </button>
+      </div>
+
+      <!-- Jule's Income -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center text-white text-xs font-bold">J</div>
+            <h3 class="font-semibold text-gray-900">Jule</h3>
+          </div>
+          <p class="font-bold text-pink-600">$3,500/mo</p>
+        </div>
+        <div class="space-y-2">
+          <div class="flex justify-between items-center py-2 border-b border-gray-50">
+            <div>
+              <p class="text-sm font-medium text-gray-900">Full-time salary</p>
+              <p class="text-xs text-gray-400">Monthly &middot; Since Mar 2026</p>
+            </div>
+            <p class="font-medium text-sm">$3,500</p>
+          </div>
+        </div>
+        <button class="mt-3 text-sm text-pink-600 font-medium flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>
+          Add income source
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SAVINGS ==================== -->
+  <div id="savings" class="screen bg-gray-50">
+    <div class="bg-white px-5 pt-5 pb-4 border-b border-gray-100">
+      <div class="flex items-center justify-between">
+        <h1 class="text-xl font-bold text-gray-900">Savings Goals</h1>
+        <button class="bg-brand-600 text-white px-3 py-1.5 rounded-lg text-sm font-medium flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>
+          New
+        </button>
+      </div>
+    </div>
+
+    <div class="px-5 pb-24 pt-4 space-y-4 fade-in">
+      <!-- Goal Card 1 -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🏖️</span>
+            <div>
+              <h3 class="font-semibold text-gray-900">Vacation Fund</h3>
+              <p class="text-xs text-gray-400">Target: Dec 2026</p>
+            </div>
+          </div>
+          <span class="text-sm font-bold text-brand-600">48%</span>
+        </div>
+        <div class="h-3 bg-gray-100 rounded-full overflow-hidden mb-2">
+          <div class="h-full bg-brand-500 rounded-full progress-bar" style="width: 48%"></div>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-500">$2,400 saved</span>
+          <span class="text-gray-700 font-medium">$5,000 goal</span>
+        </div>
+        <div class="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
+          <div class="flex -space-x-2">
+            <div class="w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center text-white text-[9px] font-bold ring-2 ring-white">A</div>
+            <div class="w-6 h-6 bg-pink-500 rounded-full flex items-center justify-center text-white text-[9px] font-bold ring-2 ring-white">J</div>
+          </div>
+          <button class="text-sm text-brand-600 font-medium bg-brand-50 px-3 py-1 rounded-lg">+ Add contribution</button>
+        </div>
+      </div>
+
+      <!-- Goal Card 2 -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🚨</span>
+            <div>
+              <h3 class="font-semibold text-gray-900">Emergency Fund</h3>
+              <p class="text-xs text-gray-400">No deadline</p>
+            </div>
+          </div>
+          <span class="text-sm font-bold text-mint-500">55%</span>
+        </div>
+        <div class="h-3 bg-gray-100 rounded-full overflow-hidden mb-2">
+          <div class="h-full bg-mint-500 rounded-full progress-bar" style="width: 55%"></div>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-500">$8,200 saved</span>
+          <span class="text-gray-700 font-medium">$15,000 goal</span>
+        </div>
+        <div class="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
+          <div class="flex -space-x-2">
+            <div class="w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center text-white text-[9px] font-bold ring-2 ring-white">A</div>
+          </div>
+          <button class="text-sm text-brand-600 font-medium bg-brand-50 px-3 py-1 rounded-lg">+ Add contribution</button>
+        </div>
+      </div>
+
+      <!-- Recent Contributions -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <h3 class="font-semibold text-gray-900 mb-3">Recent Contributions</h3>
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-brand-100 rounded-lg flex items-center justify-center text-brand-600 text-sm">A</div>
+            <div class="flex-1">
+              <p class="text-sm font-medium">$500 to Vacation Fund</p>
+              <p class="text-xs text-gray-400">Apr 1, 2026</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center text-pink-600 text-sm">J</div>
+            <div class="flex-1">
+              <p class="text-sm font-medium">$300 to Vacation Fund</p>
+              <p class="text-xs text-gray-400">Apr 1, 2026</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-brand-100 rounded-lg flex items-center justify-center text-brand-600 text-sm">A</div>
+            <div class="flex-1">
+              <p class="text-sm font-medium">$1,000 to Emergency Fund</p>
+              <p class="text-xs text-gray-400">Mar 15, 2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== INVESTMENTS ==================== -->
+  <div id="investments" class="screen bg-gray-50">
+    <div class="bg-white px-5 pt-5 pb-4 border-b border-gray-100">
+      <div class="flex items-center justify-between">
+        <h1 class="text-xl font-bold text-gray-900">Investments</h1>
+        <button class="bg-brand-600 text-white px-3 py-1.5 rounded-lg text-sm font-medium flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>
+          Add
+        </button>
+      </div>
+    </div>
+
+    <div class="px-5 pb-24 pt-4 space-y-4 fade-in">
+      <!-- Net Worth Card -->
+      <div class="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl p-5">
+        <p class="text-sm text-emerald-700">Household Net Worth</p>
+        <p class="text-3xl font-bold text-emerald-900 mt-1">$87,420</p>
+        <p class="text-sm text-emerald-600 mt-1 flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17l5-5 5 5M7 7l5 5 5-5"/></svg>
+          +$2,340 this month
+        </p>
+        <!-- Simple mini chart placeholder -->
+        <div class="mt-3 flex items-end gap-1 h-12">
+          <div class="flex-1 bg-emerald-300 rounded-t" style="height: 40%"></div>
+          <div class="flex-1 bg-emerald-300 rounded-t" style="height: 50%"></div>
+          <div class="flex-1 bg-emerald-300 rounded-t" style="height: 45%"></div>
+          <div class="flex-1 bg-emerald-300 rounded-t" style="height: 55%"></div>
+          <div class="flex-1 bg-emerald-300 rounded-t" style="height: 60%"></div>
+          <div class="flex-1 bg-emerald-300 rounded-t" style="height: 65%"></div>
+          <div class="flex-1 bg-emerald-300 rounded-t" style="height: 58%"></div>
+          <div class="flex-1 bg-emerald-300 rounded-t" style="height: 70%"></div>
+          <div class="flex-1 bg-emerald-300 rounded-t" style="height: 75%"></div>
+          <div class="flex-1 bg-emerald-300 rounded-t" style="height: 80%"></div>
+          <div class="flex-1 bg-emerald-400 rounded-t" style="height: 90%"></div>
+          <div class="flex-1 bg-emerald-500 rounded-t" style="height: 100%"></div>
+        </div>
+        <div class="flex justify-between text-[10px] text-emerald-600 mt-1">
+          <span>May '25</span><span>Apr '26</span>
+        </div>
+      </div>
+
+      <!-- Portfolio Breakdown -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <h3 class="font-semibold text-gray-900 mb-3">Portfolio Breakdown</h3>
+        <div class="space-y-2">
+          <div class="flex items-center gap-3">
+            <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <span class="flex-1 text-sm text-gray-700">401(k)</span>
+            <span class="text-sm font-medium">$42,100</span>
+            <span class="text-xs text-gray-400">48%</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+            <span class="flex-1 text-sm text-gray-700">Roth IRA</span>
+            <span class="text-sm font-medium">$18,500</span>
+            <span class="text-xs text-gray-400">21%</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+            <span class="flex-1 text-sm text-gray-700">Brokerage</span>
+            <span class="text-sm font-medium">$16,220</span>
+            <span class="text-xs text-gray-400">19%</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+            <span class="flex-1 text-sm text-gray-700">Crypto</span>
+            <span class="text-sm font-medium">$10,600</span>
+            <span class="text-xs text-gray-400">12%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accounts List -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <h3 class="font-semibold text-gray-900 mb-3">Accounts</h3>
+        <div class="space-y-3">
+          <div class="flex items-center gap-3 py-1">
+            <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-sm font-bold text-blue-600">F</div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-gray-900">Fidelity 401(k)</p>
+              <p class="text-xs text-gray-400">Agustin &middot; Retirement</p>
+            </div>
+            <p class="font-semibold text-sm">$42,100</p>
+          </div>
+          <div class="flex items-center gap-3 py-1">
+            <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center text-sm font-bold text-purple-600">V</div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-gray-900">Vanguard Roth IRA</p>
+              <p class="text-xs text-gray-400">Agustin &middot; Retirement</p>
+            </div>
+            <p class="font-semibold text-sm">$18,500</p>
+          </div>
+          <div class="flex items-center gap-3 py-1">
+            <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center text-sm font-bold text-green-600">R</div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-gray-900">Robinhood Brokerage</p>
+              <p class="text-xs text-gray-400">Jule &middot; Brokerage</p>
+            </div>
+            <p class="font-semibold text-sm">$16,220</p>
+          </div>
+          <div class="flex items-center gap-3 py-1">
+            <div class="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center text-sm font-bold text-orange-600">C</div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-gray-900">Coinbase</p>
+              <p class="text-xs text-gray-400">Agustin &middot; Crypto</p>
+            </div>
+            <p class="font-semibold text-sm">$10,600</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== REPORTS ==================== -->
+  <div id="reports" class="screen bg-gray-50">
+    <div class="bg-white px-5 pt-5 pb-4 border-b border-gray-100">
+      <h1 class="text-xl font-bold text-gray-900">Reports</h1>
+      <div class="flex gap-2 mt-3">
+        <button class="bg-brand-100 text-brand-700 px-3 py-1.5 rounded-lg text-xs font-semibold">Monthly</button>
+        <button class="bg-gray-100 text-gray-500 px-3 py-1.5 rounded-lg text-xs font-medium">Trends</button>
+        <button class="bg-gray-100 text-gray-500 px-3 py-1.5 rounded-lg text-xs font-medium">Year-over-Year</button>
+        <button class="bg-gray-100 text-gray-500 px-3 py-1.5 rounded-lg text-xs font-medium">Export</button>
+      </div>
+    </div>
+
+    <div class="px-5 pb-24 pt-4 space-y-4 fade-in">
+      <!-- Monthly Summary -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-semibold text-gray-900">April 2026 Summary</h3>
+          <span class="text-xs text-gray-400">3 days in</span>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="bg-green-50 rounded-xl p-3">
+            <p class="text-xs text-green-600">Income</p>
+            <p class="text-lg font-bold text-green-700">$10,500</p>
+          </div>
+          <div class="bg-red-50 rounded-xl p-3">
+            <p class="text-xs text-red-600">Expenses</p>
+            <p class="text-lg font-bold text-red-700">$3,247</p>
+          </div>
+          <div class="bg-blue-50 rounded-xl p-3">
+            <p class="text-xs text-blue-600">Net Savings</p>
+            <p class="text-lg font-bold text-blue-700">$7,253</p>
+          </div>
+          <div class="bg-purple-50 rounded-xl p-3">
+            <p class="text-xs text-purple-600">Savings Rate</p>
+            <p class="text-lg font-bold text-purple-700">69%</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spending Trends (mock bar chart) -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <h3 class="font-semibold text-gray-900 mb-3">6-Month Spending Trend</h3>
+        <div class="flex items-end gap-2 h-32">
+          <div class="flex-1 flex flex-col items-center gap-1">
+            <div class="w-full bg-brand-200 rounded-t" style="height: 70%"></div>
+            <span class="text-[10px] text-gray-400">Nov</span>
+          </div>
+          <div class="flex-1 flex flex-col items-center gap-1">
+            <div class="w-full bg-brand-200 rounded-t" style="height: 85%"></div>
+            <span class="text-[10px] text-gray-400">Dec</span>
+          </div>
+          <div class="flex-1 flex flex-col items-center gap-1">
+            <div class="w-full bg-brand-200 rounded-t" style="height: 60%"></div>
+            <span class="text-[10px] text-gray-400">Jan</span>
+          </div>
+          <div class="flex-1 flex flex-col items-center gap-1">
+            <div class="w-full bg-brand-200 rounded-t" style="height: 75%"></div>
+            <span class="text-[10px] text-gray-400">Feb</span>
+          </div>
+          <div class="flex-1 flex flex-col items-center gap-1">
+            <div class="w-full bg-brand-300 rounded-t" style="height: 90%"></div>
+            <span class="text-[10px] text-gray-400">Mar</span>
+          </div>
+          <div class="flex-1 flex flex-col items-center gap-1">
+            <div class="w-full bg-brand-500 rounded-t" style="height: 40%"></div>
+            <span class="text-[10px] text-gray-500 font-medium">Apr</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Breakdown -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <h3 class="font-semibold text-gray-900 mb-3">Category Breakdown</h3>
+        <div class="space-y-2.5">
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-gray-600">🏠 Rent</span>
+              <span><span class="font-medium">$2,200</span> <span class="text-gray-400 text-xs">67.8%</span></span>
+            </div>
+            <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+              <div class="h-full bg-indigo-500 rounded-full" style="width: 67.8%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-gray-600">🛒 Groceries</span>
+              <span><span class="font-medium">$320</span> <span class="text-gray-400 text-xs">9.9%</span></span>
+            </div>
+            <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+              <div class="h-full bg-green-500 rounded-full" style="width: 9.9%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-gray-600">🍽️ Restaurants</span>
+              <span><span class="font-medium">$410</span> <span class="text-gray-400 text-xs">12.6%</span></span>
+            </div>
+            <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+              <div class="h-full bg-orange-500 rounded-full" style="width: 12.6%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-gray-600">🛍️ Shopping</span>
+              <span><span class="font-medium">$280</span> <span class="text-gray-400 text-xs">8.6%</span></span>
+            </div>
+            <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+              <div class="h-full bg-purple-500 rounded-full" style="width: 8.6%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparison vs previous month -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <h3 class="font-semibold text-gray-900 mb-3">vs. March 2026</h3>
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600">Total Spending</span>
+            <span class="text-red-500 font-medium flex items-center gap-1">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 7l5 5 5-5"/></svg>
+              +8.2%
+            </span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600">Restaurants</span>
+            <span class="text-red-500 font-medium flex items-center gap-1">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 7l5 5 5-5"/></svg>
+              +22.4%
+            </span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600">Groceries</span>
+            <span class="text-green-500 font-medium flex items-center gap-1">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 17l-5-5-5 5"/></svg>
+              -5.1%
+            </span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600">Savings Rate</span>
+            <span class="text-green-500 font-medium flex items-center gap-1">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 17l-5-5-5 5"/></svg>
+              +3.1pp
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Export Buttons -->
+      <div class="flex gap-3">
+        <button class="flex-1 bg-white border border-gray-200 rounded-xl py-3 text-sm font-medium text-gray-700 flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+          Export CSV
+        </button>
+        <button class="flex-1 bg-white border border-gray-200 rounded-xl py-3 text-sm font-medium text-gray-700 flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          Export PDF
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SETTINGS ==================== -->
+  <div id="settings" class="screen bg-gray-50">
+    <div class="bg-white px-5 pt-5 pb-4 border-b border-gray-100">
+      <h1 class="text-xl font-bold text-gray-900">Settings</h1>
+    </div>
+
+    <div class="px-5 pb-24 pt-4 space-y-4 fade-in">
+      <!-- Profile Card -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm flex items-center gap-4">
+        <div class="w-14 h-14 bg-brand-500 rounded-full flex items-center justify-center text-white text-xl font-bold">A</div>
+        <div class="flex-1">
+          <p class="font-semibold text-gray-900">Agustin</p>
+          <p class="text-sm text-gray-400">agustin@email.com</p>
+          <span class="text-xs bg-brand-100 text-brand-700 px-2 py-0.5 rounded mt-1 inline-block">Owner</span>
+        </div>
+        <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+      </div>
+
+      <!-- Household -->
+      <div class="bg-white rounded-2xl shadow-sm">
+        <div class="p-4 border-b border-gray-50">
+          <h3 class="font-semibold text-gray-900 text-sm">Household</h3>
+        </div>
+        <div class="divide-y divide-gray-50">
+          <button class="w-full flex items-center justify-between p-4">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">🏠</span>
+              <span class="text-sm text-gray-700">A & J's Home</span>
+            </div>
+            <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <button class="w-full flex items-center justify-between p-4">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">👥</span>
+              <span class="text-sm text-gray-700">Members (2)</span>
+            </div>
+            <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <button class="w-full flex items-center justify-between p-4">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">📧</span>
+              <span class="text-sm text-gray-700">Invite Member</span>
+            </div>
+            <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Categories & Budgets -->
+      <div class="bg-white rounded-2xl shadow-sm">
+        <div class="p-4 border-b border-gray-50">
+          <h3 class="font-semibold text-gray-900 text-sm">Manage</h3>
+        </div>
+        <div class="divide-y divide-gray-50">
+          <button class="w-full flex items-center justify-between p-4">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">🏷️</span>
+              <span class="text-sm text-gray-700">Categories</span>
+            </div>
+            <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <button class="w-full flex items-center justify-between p-4">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">🔄</span>
+              <span class="text-sm text-gray-700">Recurring Expenses</span>
+            </div>
+            <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <button class="w-full flex items-center justify-between p-4">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">📥</span>
+              <span class="text-sm text-gray-700">Import CSV</span>
+            </div>
+            <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <button class="w-full flex items-center justify-between p-4">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">📸</span>
+              <span class="text-sm text-gray-700">Scan Receipt</span>
+            </div>
+            <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Account -->
+      <div class="bg-white rounded-2xl shadow-sm">
+        <div class="p-4 border-b border-gray-50">
+          <h3 class="font-semibold text-gray-900 text-sm">Account</h3>
+        </div>
+        <div class="divide-y divide-gray-50">
+          <button class="w-full flex items-center justify-between p-4">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">🔗</span>
+              <span class="text-sm text-gray-700">Linked Accounts</span>
+            </div>
+            <span class="text-xs text-green-500 bg-green-50 px-2 py-0.5 rounded">Google</span>
+          </button>
+          <button class="w-full flex items-center justify-between p-4">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">🔒</span>
+              <span class="text-sm text-gray-700">Change Password</span>
+            </div>
+            <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <button class="w-full flex items-center justify-between p-4 text-red-500">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">🚪</span>
+              <span class="text-sm">Sign Out</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== IMPORT (CSV) ==================== -->
+  <div id="import" class="screen bg-gray-50">
+    <div class="bg-white px-5 pt-5 pb-4 border-b border-gray-100">
+      <div class="flex items-center gap-3">
+        <button class="text-gray-400"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg></button>
+        <h1 class="text-xl font-bold text-gray-900">Import CSV</h1>
+      </div>
+      <!-- Steps -->
+      <div class="flex items-center gap-2 mt-4">
+        <div class="flex items-center gap-1.5">
+          <div class="w-6 h-6 bg-brand-600 rounded-full flex items-center justify-center text-white text-xs font-bold">1</div>
+          <span class="text-xs font-medium text-brand-600">Upload</span>
+        </div>
+        <div class="flex-1 h-0.5 bg-brand-200"></div>
+        <div class="flex items-center gap-1.5">
+          <div class="w-6 h-6 bg-brand-600 rounded-full flex items-center justify-center text-white text-xs font-bold">2</div>
+          <span class="text-xs font-medium text-brand-600">Map</span>
+        </div>
+        <div class="flex-1 h-0.5 bg-gray-200"></div>
+        <div class="flex items-center gap-1.5">
+          <div class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center text-gray-400 text-xs font-bold">3</div>
+          <span class="text-xs text-gray-400">Preview</span>
+        </div>
+        <div class="flex-1 h-0.5 bg-gray-200"></div>
+        <div class="flex items-center gap-1.5">
+          <div class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center text-gray-400 text-xs font-bold">4</div>
+          <span class="text-xs text-gray-400">Confirm</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="px-5 pb-24 pt-4 space-y-4 fade-in">
+      <!-- File uploaded state -->
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 flex items-center gap-3">
+        <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center text-green-600">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <div class="flex-1">
+          <p class="text-sm font-medium text-green-800">chase_march_2026.csv</p>
+          <p class="text-xs text-green-600">42 rows &middot; Chase format detected</p>
+        </div>
+      </div>
+
+      <!-- Column Mapping -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <h3 class="font-semibold text-gray-900 mb-3">Map Columns</h3>
+        <div class="space-y-3">
+          <div>
+            <label class="text-xs font-medium text-gray-500 mb-1 block">Date Column</label>
+            <select class="w-full border border-gray-200 rounded-xl py-2.5 px-3 text-sm bg-white">
+              <option selected>Transaction Date (auto-detected)</option>
+              <option>Post Date</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-medium text-gray-500 mb-1 block">Description Column</label>
+            <select class="w-full border border-gray-200 rounded-xl py-2.5 px-3 text-sm bg-white">
+              <option selected>Description (auto-detected)</option>
+              <option>Memo</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-medium text-gray-500 mb-1 block">Amount Column</label>
+            <select class="w-full border border-gray-200 rounded-xl py-2.5 px-3 text-sm bg-white">
+              <option selected>Amount (auto-detected)</option>
+              <option>Debit</option>
+              <option>Credit</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preview of rows -->
+      <div class="bg-white rounded-2xl p-4 shadow-sm">
+        <h3 class="font-semibold text-gray-900 mb-3">Preview (first 3 rows)</h3>
+        <div class="space-y-2">
+          <div class="bg-gray-50 rounded-xl p-3">
+            <div class="flex justify-between text-sm">
+              <span class="text-gray-500">Mar 28</span>
+              <span class="font-medium">$45.23</span>
+            </div>
+            <p class="text-sm text-gray-900 mt-0.5">TRADER JOES #1234</p>
+            <div class="flex items-center gap-1 mt-1">
+              <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">🛒 Groceries</span>
+              <span class="text-[10px] bg-blue-100 text-blue-600 px-1.5 py-0.5 rounded">AI</span>
+            </div>
+          </div>
+          <div class="bg-gray-50 rounded-xl p-3">
+            <div class="flex justify-between text-sm">
+              <span class="text-gray-500">Mar 27</span>
+              <span class="font-medium">$12.99</span>
+            </div>
+            <p class="text-sm text-gray-900 mt-0.5">NETFLIX.COM</p>
+            <div class="flex items-center gap-1 mt-1">
+              <span class="text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded">📺 Subscriptions</span>
+              <span class="text-[10px] bg-blue-100 text-blue-600 px-1.5 py-0.5 rounded">AI</span>
+            </div>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-3">
+            <div class="flex justify-between text-sm">
+              <span class="text-gray-500">Mar 27</span>
+              <span class="font-medium">$89.00</span>
+            </div>
+            <p class="text-sm text-gray-900 mt-0.5">SUSHI ROKU NYC</p>
+            <div class="flex items-center gap-2 mt-1">
+              <span class="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded">🍽️ Restaurants</span>
+              <span class="text-[10px] bg-amber-200 text-amber-700 px-1.5 py-0.5 rounded">⚠️ Possible duplicate</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-gray-400 mt-2 text-center">+ 39 more rows</p>
+      </div>
+
+      <button class="w-full bg-brand-600 text-white rounded-xl py-3.5 font-semibold">
+        Continue to Review All
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.screen-nav button').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
