@@ -28,6 +28,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
 	implementation("io.micrometer:micrometer-tracing-bridge-brave")
 	implementation("org.flywaydb:flyway-database-postgresql")
 	implementation("io.jsonwebtoken:jjwt-api:0.12.6")
