@@ -42,12 +42,6 @@ data class UserResponse(
     val households: List<HouseholdSummary>
 )
 
-data class HouseholdSummary(
-    val id: UUID,
-    val name: String,
-    val role: String
-)
-
 data class RefreshRequest(
     @field:NotBlank(message = "Refresh token is required")
     val refreshToken: String
